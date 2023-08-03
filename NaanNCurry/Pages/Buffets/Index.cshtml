@@ -1,0 +1,103 @@
+﻿@page
+@model NaanNCurry.Pages.Buffets.IndexModel
+
+
+<!-- Navbar & Hero Start -->
+<div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <a href="" class="navbar-brand p-0">
+            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+            <!-- <img src="img/logo.png" alt="Logo"> -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                <a class="nav-item nav-link" asp-area="" asp-page="/Index">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <div class="dropdown-menu m-0">
+                        <a class="nav-item nav-link" asp-area="" asp-page="/Buffets/Index">Buffet</a>
+                        <a class="nav-item nav-link" asp-area="" asp-page="/ScheduleBuffets/Index">Schedule Buffet</a>
+                        <a class="nav-item nav-link" asp-area="" asp-page="/ALaCartes/Index">ALaCarte</a>
+                        <a class="nav-item nav-link" asp-area="" asp-page="/Reservations/Index">Reservation</a>
+                    </div>
+                </div>
+              
+            </div>
+        a>
+        </div>
+    </nav>
+    <div class="container-xxl py-0 bg-dark hero-header mb-0">
+        <div class="container my-5 py-5">
+        </div>
+    </div>
+</div>
+<!-- Navbar & Hero Finish -->
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary"> Buffet Items</h2>
+        </div>
+        <div class="col-6">
+            <a asp-page="create" class="btn btn-primary"> 
+                <i class="bi bi-plus-circle"></i>&nbsp;
+                Create Buffet
+            </a>
+        </div>
+    </div>
+    <br /> <br />
+
+    <table class="table table-bordered table-striped" style="width:100%" >
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Image
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model.Buffets)
+            {
+                <tr>
+                    <td width="50%">
+                        @obj.Name
+                    </td>
+                    <td width="30%">
+                        @obj.Description
+                    </td>
+                      <td width="30%">
+                        @obj.ActiveMenu
+                    </td>
+                    <td width="30%">
+                        <img src="@obj.ImageUrl" alt="Image" width="50px" height="50px" />
+                    </td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                        <a asp-page="Edit" asp-route-id="@obj.Id" class="btn btn-primary" mx-2>
+                            <i class="bi bi-pencil-square"></i>
+                            Edit
+                        </a>
+                        <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-danger" mx-2>
+                            <i class="bi bi-trash-fill"></i>
+                            Delete
+                        </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
